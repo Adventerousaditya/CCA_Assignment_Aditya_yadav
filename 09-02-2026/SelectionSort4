@@ -1,0 +1,58 @@
+import java.util.Scanner;
+class Student13 {
+    String name;
+    int[] marks;
+
+    Student13(String name, int[] marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+}
+public class SelectionSort4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of students: ");
+        int studentsCount = sc.nextInt();
+        System.out.print("Enter number of subjects: ");
+        int subjectsCount = sc.nextInt();
+        Student13[] students = new Student13[studentsCount];
+        for (int i = 0; i < studentsCount; i++) {
+            System.out.print("\nEnter name of student " + (i + 1) + ": ");
+            String name = sc.next();
+            int[] marks = new int[subjectsCount];
+            System.out.println("Enter marks:");
+            for (int j = 0; j < subjectsCount; j++) {
+                marks[j] = sc.nextInt();
+            }
+            students[i] = new Student13(name, marks);
+        }
+        for (int i = 0; i < students.length - 1; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < students.length; j++) {
+                if (compareMarks(students[maxIndex].marks, students[j].marks) > 0) {
+                    maxIndex = j;
+                }
+            }
+            Student13 temp = students[i];
+            students[i] = students[maxIndex];
+            students[maxIndex] = temp;
+        }
+        System.out.println("\nSorted Students:");
+        for (Student13 s : students) {
+            System.out.print(s.name + " : ");
+            for (int m : s.marks) {
+                System.out.print(m + " ");
+            }
+            System.out.println();
+        }
+        sc.close();
+    }
+    static int compareMarks(int[] a, int[] b) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
+                return b[i] - a[i]; 
+            }
+        }
+        return 0;
+    }
+}
