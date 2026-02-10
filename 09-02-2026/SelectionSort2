@@ -1,0 +1,35 @@
+class Student11{
+    String name;
+    int roll;
+    Student11(String name, int roll) {
+        this.name = name;
+        this.roll = roll;
+    }
+}
+public class SelectionSort2 {
+    public static void main(String[] args) {
+        Student11[] students = {
+            new Student11("Abc", 7),
+            new Student11("Def", 5),
+            new Student11("Rtg", 18),
+            new Student11("Cde", 1),
+            new Student11("Ake", 2),
+            new Student11("Frg", 13)
+        };
+        for (int i = 0; i < students.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < students.length; j++) {
+                if (students[j].roll < students[minIndex].roll) {
+                    minIndex = j;
+                }
+            }
+            Student11 temp = students[minIndex];
+            students[minIndex] = students[i];
+            students[i] = temp;
+        }
+        System.out.println("Students sorted by roll number:");
+        for (Student11 s : students) {
+            System.out.println(s.roll + " " + s.name);
+        }
+    }
+}
