@@ -1,0 +1,48 @@
+
+class Student12 {
+    String name;
+    int m1;
+    int m2;
+    int m3;
+
+    Student12(String name, int m1, int m2, int m3) {
+        this.name = name;
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m3 = m3;
+    }
+}
+public class SelectionSort3 {
+    public static void main(String[] args) {
+        Student12[] students = {
+            new Student12("Abc", 92, 87, 65),
+            new Student12("Def", 95, 69, 81),
+            new Student12("Rtg", 92, 84, 56),
+            new Student12("Cde", 78, 86, 91),
+            new Student12("Ake", 89, 96, 85),
+            new Student12("Frg", 95, 69, 88)
+        };
+        for (int i = 0; i < students.length - 1; i++) {
+            int maxIndex = i;
+
+            for (int j = i + 1; j < students.length; j++) {
+                if (shouldSwap(students[maxIndex], students[j])) {
+                    maxIndex = j;
+                }
+            }
+            Student12 temp = students[i];
+            students[i] = students[maxIndex];
+            students[maxIndex] = temp;
+        }
+        System.out.println("Students sorted by marks:");
+        for (Student12 s : students) {
+            System.out.println(s.name + " -> " + s.m1 + " " + s.m2 + " " + s.m3);
+        }
+    }
+    static boolean shouldSwap(Student12 s1, Student12 s2) {
+        if (s1.m1 < s2.m1) return true;
+        if (s1.m1 == s2.m1 && s1.m2 < s2.m2) return true;
+        if (s1.m1 == s2.m1 && s1.m2 == s2.m2 && s1.m3 < s2.m3) return true;
+        return false;
+    }
+}
